@@ -159,7 +159,7 @@ The repository structure should match the final files actually published. Includ
 
 ## Author
 
-**Saul Moono**
+**Mapenzi Moono**
 
 Data Analytics Portfolio
 
