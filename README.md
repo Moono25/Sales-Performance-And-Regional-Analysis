@@ -1,6 +1,7 @@
 # Sales Performance & Regional Analysis Dashboard
 
 ![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-yellow)
+![Postgre SQL](https://img.shields.io/badge/Postgre%20SQL-Script-purple)
 ![Data Analysis](https://img.shields.io/badge/Data%20Analysis-Sales-blue)
 ![DAX](https://img.shields.io/badge/DAX-Data%20Modelling-orange)
 
