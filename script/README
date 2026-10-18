@@ -1,0 +1,2 @@
+The script labelled PostgreSQL add-in contains a short script of the SalesDB database and a table created from the 2023sales.csv.
+The script was created to demonstrate the capability to connect Power BI to an SQL Server, which in this case is PostgreSQL. 
