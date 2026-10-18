@@ -173,8 +173,6 @@ Product Data[Product_ID] → Sales Data[Product ID]
 
 These relationships allow fields from the related tables to be used alongside sales measures in report visuals. Confirm the exact cardinality and filter direction in Power BI's Model view before documenting those settings.
 
-<img width="1780" height="793" alt="Screenshot 2026-10-18 205740" src="https://github.com/user-attachments/assets/2cce8e3a-8889-4404-8604-f7062c730955" />
-
 ---
 
 ## 7. ERD - Entity Relationship Diagram
