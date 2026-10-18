@@ -24,11 +24,11 @@
 4. [Repository Structure](#4-repository-structure)
 5. [Data Workflow](#5-data-workflow)
 6. [Data Model & Schema](#6-data-model--schema)
-7. [Analysis--DAX-measures](#7-erd--entity-relationship-diagram) 
+7. [Analysis--DAX-measures](#7-Analysis--DAX-Measures) 
 8. [Analysis & Metrics](#8-analysis--metrics)
-9. [Key Insights](#9-key-insights)
+9. [Key Observations](#9-key-insights)
 10. [Recommendations](#10-recommendations)
-11. [Assumptions & Limitations](#11-assumptions--limitations)
+11. [Attribution](#11-assumptions--limitations)
 12. [Future Enhancements](#12-future-enhancements)
 13. [Deliverables](#13-deliverables)
 14. [Author](#14-author)
@@ -38,22 +38,15 @@
 ## 1. Project Overview
 
 <!--
-  Write 3–5 sentences in plain language.
-  Cover: context → problem → approach → outcome.
-  Read it out loud. If it sounds like a form - rewrite it.
+The Sales Performance & Regional Analysis Dashboard is a Power BI project exploring sales, profitability, product categories, customer demographics, and regional performance.
 
-  WHAT GOOD LOOKS LIKE:
-  "A mid-size retail business was seeing inconsistent revenue across
-  its regional stores but couldn't identify the root cause. This project
-  explored 18 months of transaction data across five regions to determine
-  whether underperformance was driven by sales volume, pricing, or return
-  rates. The analysis revealed that one region's gap was almost entirely
-  explained by an unusually high return rate on a single product category -
-  a finding invisible in the company's top-level reporting."
+The report uses sales data alongside customer and product information to demonstrate how Power BI can be used to analyse business performance through interactive visualisations, data relationships, and DAX calculations.
 
-  WHAT TO AVOID:
-  "This project analyzes sales data to find trends and insights."
-  (Too vague. Could describe 10,000 projects. Describes none of them.)
+The project includes a Regional Analysis page and additional pages exploring DAX measures, calculated columns, and different Power BI visualisation techniques.
+
+The report covers sales performance across the years 2019–2022 in the Regional Analysis page, with the precise overall dataset coverage to be confirmed from the source files.
+
+This project was completed as a learning exercise to practise Power BI report development, data modelling, DAX, and data visualisation.
 -->
 
 **Context:** [The business, research, or personal situation that motivated this project.]
@@ -390,118 +383,84 @@ erDiagram
 
 ## 9. Key Insights
 
-<!--
-  Findings + implications. Not just what happened - what it means.
+**Insight 1: [Sales by Product Category]**
+For the selected West region:
+Furniture generated the highest sales.
+Technology ranked second.
+Office Supplies generated the lowest sales among the three categories.
 
-  WHAT GOOD LOOKS LIKE:
-  ✅ "Return rates, not sales volume, explain Region A's underperformance.
-      Region A's return rate on home goods was 34% - more than double the
-      company average. Revenue was not lost at the point of sale; it was
-      lost post-sale through refunds. This points to a fulfilment or
-      product quality issue specific to that region, not a demand problem."
 
-  WHAT TO AVOID:
-  ❌ "Region A had lower revenue than other regions in Q4."
-     (That's an observation. It describes what happened.
-      An insight says what it means and where to look next.)
+**Insight 2: [Customer Age Distribution]**
+The documented customer distribution is:
 
-  Aim for 3–6 insights. Quality over quantity.
--->
+Age category    Count     Percentage
 
-**Insight 1: [Short descriptive headline]**
-[What you found + what it suggests. One short paragraph.]
+Middle aged      105      41.18%
 
-**Insight 2: [Short descriptive headline]**
-[What you found + what it suggests.]
+Senior           94       36.86%
 
-**Insight 3: [Short descriptive headline]**
-[What you found + what it suggests.]
+Young            56       21.96%
 
-**Insight 4 (if applicable): [Short descriptive headline]**
-[What you found + what it suggests.]
+Middle-aged customers represent the largest group in the documented view, while young customers represent the smallest.
+
+These figures describe the selected dashboard view and should not be generalised to all regions unless the filter context is removed or the broader results are verified.
+
+
+**Insight 3: [Sales and Profit by Year]**
+The Regional Analysis page compares sales and profit across 2019, 2020, 2021, and 2022 for Furniture, Office Supplies, and Technology.
+The supplied notes report that profit increased significantly from 2019 to 2022. Exact values and percentage changes have not yet been documented, so no numerical growth claim is made here.
+
+
+
+
+
+
+
+
 
 ---
 
 ## 10. Recommendations
 
-<!--
-  Action-oriented. Addressed to a real audience.
-  Tied explicitly to the insight that supports each one.
 
-  WHAT GOOD LOOKS LIKE:
-  Priority: High
-  Recommendation: "Conduct a fulfilment audit for home goods deliveries
-                   in Region A - specifically investigating whether returns
-                   correlate with a particular warehouse, carrier, or SKU batch."
-  Based On: Insight 1 - return rate anomaly in Region A
-  Owner: Operations / Supply Chain team
-
-  WHAT TO AVOID:
-  ❌ "Improve the return rate."
-     (Not actionable. Doesn't say who, how, or where to start.)
-  ❌ "Further analysis is needed."
-     (This is a placeholder, not a recommendation.)
--->
 
 | Priority | Recommendation | Based On | Suggested Owner |
 |----------|---------------|----------|-----------------|
-| High | [Specific, actionable step] | [Insight it comes from] | [Who should act] |
-| Medium | [Specific, actionable step] | [Insight it comes from] | [Who should act] |
-| Low | [Exploratory or longer-term suggestion] | [Insight it comes from] | [Who should act] |
+| High |  Compare sales and profit across regions to identify where additional analysis may be useful. |Use the yearly comparisons to identify changes that warrant further investigation. | Regional Sales Directors & Business Intelligence Team |
+| High |Examine sales alongside profit to understand whether high sales correspond to stronger profitability.| [Insight it comes from] | Chief Financial Officer & Commercial Strategy Lead|
+| Medium |Examine whether customer distributions vary across regions or segments. | [Insight it comes from] | Marketing Analytics Manager & CRM Administrator |
+| Medium | Examine sales alongside profit to understand whether high sales correspond to stronger profitability. | [Insight it comes from] | Financial Planning & Analysis |
+| Medium |Review the marketing-category classification, fixed target values, and colour thresholds before using them for actual business decisions. | [Insight it comes from] | Marketing Operations Director & Data governance Lead |
 
 ---
 
 ## 11. Assumptions & Limitations
-
-<!--
-  WHAT GOOD LOOKS LIKE:
-  Assumption: "Transaction records were assumed to be complete for all five regions.
-               No validation was performed against source system record counts."
-  Limitation: "The analysis cannot distinguish between returns initiated by
-               the customer vs. returns initiated by the business (e.g., recalls).
-               If business-initiated returns are concentrated in Region A, the
-               return rate finding may reflect a policy decision, not a quality issue."
-
-  WHAT TO AVOID:
-  ❌ Leaving this section blank or writing "None known."
-     Every project has limitations. Documenting them is a sign of
-     analytical maturity - not a confession of failure.
--->
-
 ### Assumptions
-- [What did you treat as true without being able to verify?]
-- [What simplifications did you make for scope or feasibility?]
-- [What domain rules or definitions did you accept as given?]
+- The marketing-category classification is based on specified state names and should not be interpreted as an independently validated marketing segmentation.
+- The precise overall dataset date coverage should be confirmed from the source files.
+- The documented Regional Analysis page compares 2019–2022.
 
 ### Limitations
-- [What gaps exist in the data?]
-- [What analysis was out of scope but could affect interpretation?]
-- [What would a more rigorous version of this project include?]
-- [Are there known biases in the data source or collection method?]
+-The fixed sales multiplier and target-profit value require additional context before they can be interpreted as business measures.
+- The report identifies patterns and comparisons but does not establish causal explanations.
+- The analysis is limited to the fields available in the supplied datasets.
+- Exact numerical findings beyond the supplied Regional Analysis notes have not been independently verified.
+- This project demonstrates learning and practical application of Power BI concepts; it is not an independently commissioned client engagement.
 
-> *The goal here is pre-emptive Q&A. What would a thoughtful skeptic push back on? Document the answer here, before they ask.*
 
 ---
 
 ## 12. Future Enhancements
 
-<!--
-  WHAT GOOD LOOKS LIKE:
-  ✅ "Automate the monthly data pull from the POS export folder using
-      a scheduled Python script, replacing the current manual process."
-  ✅ "Expand the return rate analysis to include carrier-level data,
-      which was unavailable in this dataset but exists in the logistics system."
+- [ ] Reviewing and documenting the data model and relationship settings.
+- [ ] Validating the data types, key uniqueness, and consistency of the source tables.
+- [ ] Documenting the final dataset date range and data grain.
+- [ ] Adding a dedicated sales and profitability overview page, if needed.
+- [ ] Documenting key measures with their business definitions and intended use.
+- [ ] Validating target values, conditional-formatting thresholds, and currency assumptions.
+- [ ] Adding verified numerical findings and percentage changes.
+- [ ] Including screenshots of the most informative report pages.
 
-  WHAT TO AVOID:
-  ❌ "Add a machine learning model."
-     (Vague, and disconnected from the actual findings of this project.)
-  ❌ Listing aspirational features that don't follow logically from the work.
--->
-
-- [ ] [Enhancement 1 - specific and traceable to a real gap in this project]
-- [ ] [Enhancement 2]
-- [ ] [Enhancement 3]
-- [ ] [Enhancement 4]
 
 ---
 
@@ -509,20 +468,21 @@ erDiagram
 
 | Deliverable | Description | Location |
 |-------------|-------------|----------|
-| [Name] | [What it contains] | [`/path/to/file`] |
-| [Name] | [What it contains] | [`/path/to/file`] |
-| [Name] | [What it contains] | [`/path/to/file`] |
+| Power BI report | [ Interactive sales and regional analysis report.] | [`/PowerBI/sales and regional analysis report.`] |
+| Source data | [CSV files used by the report, subject to redistribution permissions.] | [`/raw/external/2023sale.csv,....`] | | [`/processed/sales and regional analysis report.pbix`] | | [`/external/..../customer data/`] |
+| Dashboard screenshots |Static previews of selected report pages | [`/visuals/Sales Performance  Regional Analysis`] |
+| README |Documentation of the project scope, data model, DAX calculations, report features, observations, and limitations. | main |
 
 ---
 
 ## 14. Author
 
-**[Your Name]**
-[Your role or title - current or target]
+**[Mapenzi Moono]**
+[Data support/Intern - Data Analyst/ Research Associate/ M&E Assistant]
 
-- 🔗 [LinkedIn URL]
+- 🔗 [https://www.linkedin.com/in/mapenzi-moono-445aaa26a/
 - 💼 [Portfolio or GitHub profile URL]
-- 📧 [Email - optional]
+- 📧  [mapenzimoono345@gmail.com]
 
 ---
 
