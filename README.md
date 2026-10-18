@@ -141,6 +141,8 @@ Sales-Performance-Regional-Analysis/
 ├── data/
 │   ├── Salestill2022.csv
 │   └── 2023sales.csv
+├── script/
+│   └── Postgre_SQL_addin.sql
 ├── powerbi/
 │   └── Sales_Performance_Regional_Analysis.pbix
 ├── visuals/
