@@ -140,8 +140,23 @@ This project was developed as a learning exercise to practise Power BI concepts 
 ```text
 Sales-Performance-Regional-Analysis/
 ├── data/
-│   ├── Salestill2022.csv
-│   └── 2023sales.csv
+│   └── external/
+│     └── Customer Data/
+|      ├── Customer_central.csv
+|      ├── Customer_east.csv
+|      ├── Customer_south.csv
+|      ├── Customer_east.csv
+|  └── 2023sales.csv
+|  └── README.md
+|              
+│  └── processed/
+|       └── README.md
+|       └── Sales_Performance_Regional_Analysis.pbix
+│  └── raw/
+│    ├── Salestill2022.csv
+|    ├── ProductData.xml
+│    └── 2023sales.csv
+|    └── README.md
 ├── script/
 │   └── Postgre_SQL_addin.sql
 ├── powerbi/
