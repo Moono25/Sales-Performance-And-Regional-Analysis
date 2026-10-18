@@ -61,28 +61,11 @@ This project was completed as a learning exercise to practise Power BI report de
 
 ## 2. Objectives
 
-<!--
-  Write objectives that are specific enough to succeed or fail.
-  Use action-oriented verbs: Identify, Determine, Quantify, Build, Evaluate.
-
-  WHAT GOOD LOOKS LIKE:
-  ✅ "Determine whether customer churn rate correlates with support ticket volume."
-  ✅ "Identify the top three revenue-driving product categories across all regions."
-  ✅ "Build a reproducible pipeline that ingests and cleans daily sales exports."
-
-  WHAT TO AVOID:
-  ❌ "Explore the data."
-  ❌ "Gain insights."
-  ❌ "Understand trends."
-  (These can't fail - which means they can't succeed either.)
--->
-
-- **Primary Objective:** [The main thing you set out to do]
-- **Secondary Objective 1:** [Supporting goal]
-- **Secondary Objective 2:** [Supporting goal]
-- **Secondary Objective 3:** [Remove if not applicable]
-
-> 💡 *Every analysis decision in this project traces back to one of these objectives.*
+- **Primary Objective:** [ Build an interactive Power BI report for exploring sales and profitability across regions, product categories, and years.]
+- **Secondary Objective 1:** [ Combine sales, customer, and product information through relationships between tables.]
+- **Secondary Objective 2:** [Create DAX measures and calculated columns to support business-performance analysis.]
+- **Secondary Objective 3:** [Practise presenting information through different Power BI visualisations and report pages.]
+- **Secondary Objective 4:** [Identify observations from regional, product-category, profitability, and customer-demographic views.]
 
 ---
 
@@ -90,25 +73,13 @@ This project was completed as a learning exercise to practise Power BI report de
 
 ### Scope
 
-<!--
-  WHAT GOOD LOOKS LIKE:
-  In Scope: "Transaction-level data for Regions A–E, Jan 2023–Jun 2024.
-             Analysis covers revenue, return rates, and product category performance."
-  Out of Scope: "Customer demographics and marketing spend data were excluded -
-                 demographic data was incomplete for two regions, and marketing
-                 data sits in a separate system outside this engagement."
-
-  WHAT TO AVOID:
-  ❌ Leaving Out of Scope blank. This is the section that protects your credibility.
-     If you don't define the fence, reviewers assume you missed things.
--->
-
 | Dimension | Details |
 |-----------|---------|
-| **In Scope** | [What is included - data sources, time periods, segments] |
-| **Out of Scope** | [What you explicitly excluded - and a brief reason why] |
-| **Time Period** | [Date range of the data or the project itself] |
-| **Granularity** | [Unit of analysis - row-level, daily aggregates, per-user, etc.] |
+| **In Scope** | Sales performance, profit, product categories, regional comparisons, customer age groups, and selected DAX calculations |
+| **Out of Scope** | Forecasting, causal analysis, validated marketing effectiveness, and recommendations based on independently verified company operations |
+| **Time Period** | The Regional Analysis page displays 2019–2022. The full source-data date range has not been independently confirmed. |
+| **Granularity** | The report uses sales records and associated customer and product information. Exact row-level grain and row counts should be confirmed from the source files. |
+|**Report format**| Interactive Power BI report with multiple pages and visual types |
 
 ### Tools & Technologies
 
@@ -119,15 +90,13 @@ This project was completed as a learning exercise to practise Power BI report de
 
 | Category | Tool(s) Used |
 |----------|-------------|
-| Data Storage | [e.g., PostgreSQL, CSV files, BigQuery, S3] |
-| Data Processing | [e.g., Python, R, SQL, Excel, dbt] |
-| Analysis | [e.g., pandas, dplyr, custom SQL queries] |
-| Visualization | [e.g., Matplotlib, Tableau, Power BI, Looker] |
-| Version Control | [e.g., Git / GitHub] |
-| Documentation | [e.g., Markdown, Notion] |
-| Other | [Any additional tools] |
+| Data Storage | CSV files, files and xml |
+| Data Processing | SQL, Excel and PowerBI |
+| Analysis | DAX measures and calculated columns and SQL queries |
+| Visualization | Microsoft Power BI |
+| Version Control | GitHub|
+| Documentation | Markdown |
 
----
 
 ## 4. Repository Structure
 
@@ -158,36 +127,9 @@ This project was completed as a learning exercise to practise Power BI report de
 ├── visuals/
 │   └── screenshots/
 └── README.md
-
-> ⚠️ *Delete folders you didn't use. An empty folder is worse than no folder.*
-> SQL-heavy projects: keep `queries/`. Analysis-only projects: keep `notebooks/`. Both? Keep both.
-
 ---
 
 ## 5. Data Workflow
-
-<!--
-  Show how data moved through your project - from source to output.
-  Every transformation decision should be traceable here.
-
-  WHAT GOOD LOOKS LIKE:
-  1. Source: "Monthly CSV exports pulled from the internal POS system.
-              Five files, one per region, covering Jan 2023–Jun 2024."
-  2. Ingestion: "Loaded into Python using pandas. Files concatenated into
-                 a single dataframe (approx. 340,000 rows)."
-  3. Cleaning: "Removed 1.2% of rows with null transaction IDs.
-                Standardised date formats across regional files.
-                Resolved product category naming inconsistencies (3 variants → 1)."
-  4. Transformation: "Created a returns_rate field at product-category level.
-                      Aggregated to weekly and regional grain for trend analysis."
-  5. Analysis: "Descriptive statistics, regional comparison, return rate
-                segmentation by product category."
-  6. Output: "Summary report (PDF), annotated notebook, processed CSV."
-
-  WHAT TO AVOID:
-  ❌ "Data was cleaned and analysed." (No chain. No decisions. No trust.)
--->
-
 ```
 [Source CSV Files]
             ↓
@@ -202,144 +144,172 @@ This project was completed as a learning exercise to practise Power BI report de
 [Interactive Power BI Report]
 ```
 
-1. **Source:** [Where did the data come from? Format, size, access method.]
-2. **Ingestion:** [How was it brought in?]
-3. **Cleaning:** [What issues did you find and fix?]
-4. **Transformation:** [What new fields, aggregations, or structures did you create?]
-5. **Analysis:** [What methods - statistical, visual, query-based, model-based?]
-6. **Output:** [What form do the results take?]
+1. **Source:** The project uses the postgres SQL addin, productdata.xml, customerdata file, 2023sales and salestill2022 dataset as the source of the sales and related business data.
+2. **Ingestion:** Import the relevant files into Power BI.
+3. **Preparation:** Inspect and prepare the imported data using the steps actually applied in Power Query.
+4. **Modelling:** Establish relationships between sales records and the related customer and product information.
+5. **Analysis:** Create DAX calculations and use them in report visuals.
+6. **Visualisation:** Present the results across the report's regional, sales, profitability, and DAX analysis pages.
+7. **Output:** An interactive Power BI report saved as a .pbix file, accompanied by documentation and selected screenshots.
+Source: Sales, customer, and product information supplied through the project files.
 
 ---
 
 ## 6. Data Model & Schema
 
-<!--
-  Define your fields so that someone reading your analysis can follow along
-  without digging through your code.
+The report uses three main tables:
 
-  WHAT GOOD LOOKS LIKE (one row example):
-  | transaction_id | string | Unique identifier per sales transaction | TXN-00482 |
-  | return_flag    | boolean | Whether the transaction included a return | TRUE |
-  | region_code    | string | Two-letter identifier for store region | "NE" |
+|Table          | Role in the report|
+|---------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+|Sales Data     |Contains sales-related records and fields used for sales, profit, order, and year-based analysis.|
+|Customer Data  |Contains customer-related attributes, including region, city, state, country, postal code, and customer information used by report visuals.|
+|Product Data   |Contains product attributes, including product names used in the report.|
 
-  WHAT TO AVOID:
-  ❌ Skipping this section because "the field names are self-explanatory."
-     They're not. Not to a reviewer. Not to you in six months.
 
-  📌 FOR SQL PROJECTS: If you have multiple tables, create one block per table.
-     Describe join keys and relationships here. Your ERD (Section 7) will
-     visualise what this section describes in text.
+Relationships
+The model connects sales records to customer and product information through the following fields:
+Customer Data[Customer ID] → Sales Data[Customer ID]
+Product Data[Product_ID] → Sales Data[Product ID]
 
-  📌 FOR NON-SQL PROJECTS: Describe the shape of your dataset informally
-     if a formal schema doesn't apply. Even one paragraph is more helpful than nothing.
--->
+These relationships allow fields from the related tables to be used alongside sales measures in report visuals. Confirm the exact cardinality and filter direction in Power BI's Model view before documenting those settings.
 
-### Dataset / Table: `[name]`
-
-| Field Name | Data Type | Description | Example Value |
-|------------|-----------|-------------|---------------|
-| `[field_1]` | [string / int / date / float / boolean] | [What this field represents] | [Non-sensitive example] |
-| `[field_2]` | [string / int / date / float / boolean] | [What this field represents] | [Non-sensitive example] |
-| `[field_3]` | [string / int / date / float / boolean] | [What this field represents] | [Non-sensitive example] |
-
-> **Row count (approx.):** [X rows]
-> **Date range:** [Start] – [End]
-> **Key join / relationship:** [e.g., `orders.customer_id` → `customers.id`]
-
-*Add additional table blocks as needed for multi-table projects.*
+<img width="1780" height="793" alt="Screenshot 2026-10-18 205740" src="https://github.com/user-attachments/assets/2cce8e3a-8889-4404-8604-f7062c730955" />
 
 ---
 
 ## 7. ERD - Entity Relationship Diagram
-### *(Primarily for SQL Projects - remove this section if not applicable)*
+### The report uses DAX measures and calculated columns to support sales, profit, order, customer, and regional analysis.
 
-<!--
-  An ERD shows how your tables connect to each other visually.
-  It is the fastest way for a reviewer to understand the data structure
-  of a SQL project without reading every query.
+Key DAX calculations
 
-  HOW TO INCLUDE YOUR ERD:
-  Option A - Image embed (most common):
-    Export your ERD from dbdiagram.io, DBeaver, Lucidchart, or similar.
-    Save to /visuals/erd.png and reference it below.
+Total Sales
 
-  Option B - dbdiagram.io code block (version-controllable):
-    Paste your schema definition code directly in the fenced block below.
-    Anyone can paste it into dbdiagram.io to regenerate the visual.
+Total Sales = SUM('Sales Data'[Sales])
 
-  Option C - Mermaid diagram (renders natively in GitHub):
-    Use the mermaid code block syntax below.
-    GitHub will render this as a diagram automatically.
+Calculates the sum of the sales values in the current filter context.
 
-  PICK ONE. Don't use all three. Delete the options you don't use.
--->
+Total Profit
 
-### Option A - Embedded Image
-![ERD Diagram](visuals/erd.png)
-*[Brief caption: e.g., "Three-table schema - orders, customers, and products joined on shared IDs."]*
+TotalProfit = SUM('Sales Data'[Profit])
 
----
+Calculates the sum of profit values in the current filter context.
 
-### Option B - dbdiagram.io Schema Definition
-```
-Table orders {
-  order_id    int     [pk]
-  customer_id int     [ref: > customers.customer_id]
-  product_id  int     [ref: > products.product_id]
-  order_date  date
-  amount      float
-}
+West Sales
+West Sales =
+CALCULATE(
+    [Total Sales],
+    'Customer Data'[Region] = "West"
+    )
 
-Table customers {
-  customer_id int  [pk]
-  region_code string
-  signup_date date
-}
+Calculates sales for the West region, subject to the measure's filter behaviour and the model relationships.
 
-Table products {
-  product_id   int    [pk]
-  category     string
-  unit_price   float
-}
-```
-*Paste this into [dbdiagram.io](https://dbdiagram.io) to view the visual.*
+Distinct Orders
 
----
+Distinct orders =
+DISTINCTCOUNT('Sales Data'[Order Number])
 
-### Option C - Mermaid Diagram *(renders on GitHub)*
-```mermaid
-erDiagram
-    ORDERS {
-        int order_id PK
-        int customer_id FK
-        int product_id FK
-        date order_date
-        float amount
-    }
-    CUSTOMERS {
-        int customer_id PK
-        string region_code
-        date signup_date
-    }
-    PRODUCTS {
-        int product_id PK
-        string category
-        float unit_price
-    }
-    ORDERS ||--o{ CUSTOMERS : "placed by"
-    ORDERS ||--o{ PRODUCTS : "contains"
-```
+Counts distinct order numbers in the current filter context.
 
----
+Target Profit
+Target profit = 100000
 
-**Table Relationships Summary:**
+Defines a fixed target value of 100,000. Its intended currency and business rationale have not been confirmed, so it should be treated as a demonstration target rather than a validated organisational target.
 
-| Relationship | Join Key | Type |
-|-------------|----------|------|
-| `orders` → `customers` | `customer_id` | Many-to-One |
-| `orders` → `products` | `product_id` | Many-to-One |
-| [Add rows as needed] | | |
+Calculated columns
 
+Address
+
+Address =
+'Customer Data'[City] & ", " & 'Customer Data'[State]
+
+Combines the city and state into one text field.
+
+Full Address
+Full Address =
+CONCATENATE(
+    'Customer Data'[Address],
+    'Customer Data'[Postal Code]
+)
+
+Combines the address and postal-code fields. The formatting should be checked if this field is used for display.
+
+Full Address 2
+Full address 2 =
+CONCATENATE(
+    'Customer Data'[City],
+    ', ' & 'Customer Data'[Country] & ' ' &
+    'Customer Data'[Postal Code]
+)
+
+Combines selected location fields into a display string.
+
+Marketing Category
+Marketing Category =
+IF(
+    'Customer Data'[State] = "California"
+    || 'Customer Data'[State] = "New york"
+    || 'Customer Data'[State] = "Texas",
+    "Top",
+    "Other"
+)
+
+Classifies records from the specified states as Top and all other records as Other. This is a rule-based classification used in the report; it is not evidence that marketing performance has been measured or validated. The state labels and capitalisation should also be checked against the source data.
+
+Product Name
+Product name =
+RELATED('Product Data'[Product_Name])
+
+Retrieves the related product name through the model relationship, where that relationship supports the calculation.
+
+Sales in Rupees
+SalesinRupees =
+'Sales Data'[Sales] * 80
+
+Multiplies sales by a fixed factor of 80. Unless the conversion factor, currency, and applicable date are verified, this should be treated as a demonstration calculation—not a current or validated currency conversion.
+
+Conditional Formatting Colour
+color =
+SWITCH(
+    TRUE(),
+    'Sales Data'[Sales2021] > 600000, "#00FF00",
+    'Sales Data'[Sales2021] > 500000, "#FFFF00",
+    "#FF0000"
+)
+
+Assigns a colour code based on the Sales2021 value. Values above 600,000 are assigned green, values above 500,000 up to 600,000 are assigned yellow, and the remaining values are assigned red.
+
+Report analysis areas
+Analysis area
+
+What it examines
+
+Regional Analysis
+
+Sales by product category, customer age-group distribution, and sales/profit comparisons across 2019–2022.
+
+Profitability
+
+Profit by product subcategory and profit margin by region.
+
+Sales by category
+
+Sales comparisons across product categories.
+
+Regional and category comparisons
+
+Sales across regions and categories.
+
+Order analysis
+
+Distinct orders by region or other report filters.
+
+Marketing Category
+
+Sales grouped by the rule-based Top and Other classification.
+
+Visualisation practice
+
+Different chart types, tables, cards, and other Power BI visual features across the report pages.
 ---
 
 ## 8. Analysis & Metrics
@@ -371,27 +341,26 @@ erDiagram
 |--------|--------------------------|----------------|
 | `[Metric 1]` | [What it measures, in one sentence] | [What decision or question it answers] |
 | `[Metric 2]` | [What it measures, in one sentence] | [What decision or question it answers] |
-| `[Metric 3]` | [What it measures, in one sentence] | [What decision or question it answers] |
+| **Sales in Rupees** | [What it measures, in one sentence] | [What decision or question it answers] |
 
 ### Methods Used
 
-- [e.g., Descriptive statistics - distribution, central tendency, outlier detection]
-- [e.g., Trend analysis across [time period]]
-- [e.g., Segmentation / group comparison by [dimension]]
-- [e.g., Correlation analysis between [variable A] and [variable B]]
-- [e.g., SQL window functions for [specific aggregation]]
-- [e.g., Custom aggregation or transformation logic in [tool]]
+- Regional Analysis  Sales by product category,    customer age-group distribution, and sales/profit comparisons across 2019–2022.
+- Profitability Profit by product       subcategory and profit margin by region.
+- Sales by category        Sales comparisons across product categories.
+- Regional and category    comparisons Sales across regions and categories.
+- Order analysis Distinct  orders by region or other report filters.
+- Marketing Category Sales grouped by the rule-based Top and Other classification.
+-  Visualisation practice  Different chart types, tables, cards, and other Power BI visual features across the report pages.
 
 ---
 
 ## 9. Key Insights
 
-**Insight 1: [Sales by Product Category]**
-For the selected West region:
-Furniture generated the highest sales.
-Technology ranked second.
-Office Supplies generated the lowest sales among the three categories.
-
+**Insight 1: [Product-category performance in the West region]**
+Furniture has the highest sales among the three categories.
+Technology ranks second.
+Office Supplies has the lowest sales of the three categories.
 
 **Insight 2: [Customer Age Distribution]**
 The documented customer distribution is:
@@ -399,19 +368,18 @@ The documented customer distribution is:
 Age category    Count     Percentage
 
 Middle aged      105      41.18%
-
 Senior           94       36.86%
-
 Young            56       21.96%
+Total            255      100%
 
 Middle-aged customers represent the largest group in the documented view, while young customers represent the smallest.
 
 These figures describe the selected dashboard view and should not be generalised to all regions unless the filter context is removed or the broader results are verified.
 
 
-**Insight 3: [Sales and Profit by Year]**
-The Regional Analysis page compares sales and profit across 2019, 2020, 2021, and 2022 for Furniture, Office Supplies, and Technology.
-The supplied notes report that profit increased significantly from 2019 to 2022. Exact values and percentage changes have not yet been documented, so no numerical growth claim is made here.
+**Insight 3: [Sales and profit over time]**
+The Regional Analysis page compares sales and profit by year and product category for 2019–2022. The reviewed chart suggests that profit increases substantially over the displayed period.
+Exact values and percentage changes have not been recorded here, so no numerical growth claim is made. The trend should be checked against the underlying data and visual filters before reporting specific amounts or growth rates.
 
 
 
