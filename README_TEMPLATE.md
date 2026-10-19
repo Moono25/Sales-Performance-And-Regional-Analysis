@@ -177,7 +177,8 @@ The `Accounts` table contains account-level information used to analyse sales pe
 The `Plant_Hierarchy` table contains product hierarchy information used to categorise and analyse products.
 
 ### Relationships
-![Power BI Data Model](visuals/screenshots/Data_model.png)
+![<img width="1126" height="577" alt="Screenshot 2026-10-19 113808" src="https://github.com/user-attachments/assets/c5ce8edf-6eb2-4a01-b54c-521854c05ac7" />
+](visuals/screenshots/Data_model.png)
 
 The model connects sales records to customer and product information through the following fields:
 Customer Data[Customer ID] → Sales Data[Customer ID]
