@@ -168,14 +168,6 @@ Interactive Power BI Report
 |Product Data   |Contains product attributes, including product names used in the report.|
 
 
-> ### Accounts
-
-The `Accounts` table contains account-level information used to analyse sales performance across different accounts.
-
-### Plant_Hierarchy
-
-The `Plant_Hierarchy` table contains product hierarchy information used to categorise and analyse products.
-
 ### Relationships
 <img width="1126" height="577" alt="Screenshot 2026-10-19 113808" src="https://github.com/user-attachments/assets/c5ce8edf-6eb2-4a01-b54c-521854c05ac7" />
 (visuals/screenshots/Data_model.png)
@@ -197,38 +189,43 @@ The analysis uses comparative sales-performance analysis to evaluate current-per
 
 | Metric | Plain-Language Definition | Why It Matters |
 |--------|--------------------------|----------------|
-| **Sales** | Total sales value generated during the selected period. | Measures overall revenue performance. |
-| **Quantity** | Total quantity of products sold during the selected period. | Measures sales volume independently of sales value. |
-| **Gross Profit** | Profit generated after accounting for the relevant cost of sales. | Measures the profitability generated from sales. |
-| **Gross Profit %** | Gross profit expressed as a percentage of sales. | Shows profitability relative to sales value. |
-| **YTD** | Sales or performance accumulated from the beginning of the selected year to the selected date. | Shows current-year performance to date. |
-| **PYTD** | The equivalent year-to-date period from the previous year. | Provides a comparable baseline for current performance. |
-| **YTD vs PYTD** | Comparison between current YTD performance and the corresponding previous-year period. | Identifies whether performance has improved or declined. |
+| **Total Sales** | Calculates the sum of the sales values in the current filter context. |  |
+| **Total Profit** | Calculates the sum of profit values in the current filter context. |  |
+| **West Sales** | Calculates sales for the West region, subject to the measure's filter behaviour and the model relationships. |  |
+| **Distinct Orders** | Counts distinct order numbers in the current filter context. |  |
+| **Marketing Category** | Classifies records from the specified states as Top and all other records as Other. This is a rule-based classification used in the report; it is not evidence that marketing performance has been measured or validated. The state labels and capitalisation should also be checked against the source data. |  |
+| **Conditional Formatting Colour** | Assigns a colour code based on the Sales2021 value. Values above 600,000 are assigned green, values above 500,000 up to 600,000 are assigned yellow, and the remaining values are assigned red. |  |
 
 ### Methods Used
-
-- Year-to-date and previous-year-to-date comparison
-- Time-based trend analysis
-- Geographic performance analysis
-- Product-type performance analysis
-- Account-level performance analysis
-- Comparative analysis of sales, quantity and profitability
+- Time-based trend analysis — compares sales and profit across the years displayed in the report (2019–2022).
+- Geographic performance analysis — examines sales and profitability across regions.
+- Product-category analysis — compares sales across Furniture, Technology, and Office Supplies.
+- Profitability analysis — examines profit by subcategory and profit margin by region.
+- Customer demographic analysis — compares the distribution of customers across age groups.
+- Comparative analysis — uses report visuals to compare sales, profit, and distinct orders under different filters.
 
 ---
 
 ## 8. Key Insights
-**Insight 1: [Sales performance changed across the comparison period]**  
-The dashboard allows current-period sales performance to be compared with the corresponding previous period, highlighting changes in overall sales performance.
+**Insight 1: [Customer Age Distribution]**  
+The documented customer distribution is:
+| Age category  |  Count  |     Percentage |
+|----------|---------------|------------|
+Middle aged   |   105    |  41.18% |
+Senior   |        94       |  36.86%      |
+Young     |       56        |  21.96%    |
+Total         |   255        |  100%       |
 
-**Insight 2: [Sales volume and profitability do not necessarily move together]**  
-Comparing quantity, sales and gross profit provides a broader view of performance than relying on sales value alone.
+Middle-aged customers represent the largest group in the documented view, while young customers represent the smallest.
+These figures describe the selected dashboard view and should not be generalised to all regions unless the filter context is removed or the broader results are verified.
 
-**Insight 3: [Performance varies across business dimensions]**  
-The dashboard shows differences in performance across countries, product types and accounts, allowing areas of stronger and weaker performance to be identified.
 
-**Insight 4: [Profitability requires separate monitoring]** 
+**Insight 2: [Sales and profit over time]**  
+The Regional Analysis page compares sales and profit by year and product category for 2019–2022. The reviewed chart suggests that profit increases substantially over the displayed period.
+Exact values and percentage changes have not been recorded here, so no numerical growth claim is made. The trend should be checked against the underlying data and visual filters before reporting specific amounts or growth rates.
 
-Gross profit and gross profit percentage provide additional context when evaluating sales performance and help distinguish revenue growth from changes in profitability.
+**Insight 3: [Product-category performance in the West region]**  
+Furniture has the highest sales among the three categories. Technology ranks second. Office Supplies has the lowest sales of the three categories.
 
 ---
 
@@ -237,9 +234,12 @@ Gross profit and gross profit percentage provide additional context when evaluat
 
 | Priority | Recommendation | Based On | Suggested Owner |
 |----------|---------------|----------|-----------------|
-| High | Investigate countries and accounts showing sustained weaker sales or profitability performance to identify the factors contributing to the decline. | Geographic and account-level performance analysis | Sales / Management |
-| High | Monitor gross profit percentage alongside sales when evaluating performance so that increases in sales volume are considered alongside profitability. | Sales and profitability comparison | Management / Finance |
-| Medium | Review product-type performance to identify categories contributing most strongly to sales and profitability and those requiring attention. | Product-type analysis | Sales / Product Management |
+| High |  Compare sales and profit across regions to identify where additional analysis may be useful. |Use the yearly comparisons to identify changes that warrant further investigation. | Regional Sales Directors & Business Intelligence Team |
+| High |Examine sales alongside profit to understand whether high sales correspond to stronger profitability.| [Insight it comes from] | Chief Financial Officer & Commercial Strategy Lead|
+| Medium |Examine whether customer distributions vary across regions or segments. | [Insight it comes from] | Marketing Analytics Manager & CRM Administrator |
+| Medium | Examine sales alongside profit to understand whether high sales correspond to stronger profitability. | [Insight it comes from] | Financial Planning & Analysis |
+| Medium |Review the marketing-category classification, fixed target values, and colour thresholds before using them for actual business decisions. | [Insight it comes from] | Marketing Operations Director & Data governance Lead |
+
 
 ---
 
