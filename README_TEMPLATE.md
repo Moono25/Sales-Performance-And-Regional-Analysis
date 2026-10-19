@@ -80,7 +80,7 @@ This project was completed as a learning exercise to practise Power BI report de
 | **Time Period** | The Regional Analysis page displays 2019–2022. The full source-data date range has not been independently confirmed. |
 | **Granularity** | The report uses sales records and associated customer and product information. Exact row-level grain and row counts should be confirmed from the source files. |
 |**Report format**| Interactive Power BI report with multiple pages and visual types |
-
+Sales in Rupees
 ### Tools & Technologies
 
 <!--
