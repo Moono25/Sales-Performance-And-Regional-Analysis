@@ -131,45 +131,42 @@ Sales in Rupees
 
 ## 5. Data Workflow
 ```
-[Source CSV Files]
+Source CSV Files
             ↓
-[Data Import into Power BI]
+Data Import into Power BI
             ↓
-[Data Model & Relationships]
+Data Model & Relationships
             ↓
-[DAX Measures &Calculated Columns]
+DAX Measures &Calculated Columns
             ↓
-[Charts, Tables & Other Visual
+Charts, Tables & Other Visual
             ↓
-[Interactive Power BI Report
+Interactive Power BI Report
 ```
 
 ```
 
-1. **Source:** The project uses the Plant_DTS.xls dataset as the source of the sales and related business data.
-2. **Ingestion:** The source workbook was imported into Power BI for preparation and analysis.
-3. **Cleaning:** The source data was reviewed and prepared using Power Query to ensure that the tables and fields were suitable for analysis.
-4. **Data Modeling:** Relationships were established between the relevant tables within the Power BI data model.
-5. **Transformation:** Data was transformed into a structure suitable for the dashboard and analytical calculations by removing empty columns and making sure formats were consistent.
-6. **Analysis:** DAX measures were created to calculate sales-performance metrics including YTD, PYTD, YTD vs PYTD, quantity, gross profit and gross profit percentage.
-7. **Output:** The prepared data and measures were presented through an interactive Power BI sales performance dashboard.
+1. **Source:**  The project uses the postgres SQL addin, productdata.xml, customerdata file, 2023sales and salestill2022 dataset as the source of the sales and related business data.
+2. **Ingestion:** Import the relevant files into Power BI.
+3. **Preperation:** Inspect and prepare the imported data using the steps actually applied in Power Query.
+4. **Data Modeling:** Establish relationships between sales records and the related customer and product information.
+5. **Analysis:** Create DAX calculations and use them in report visuals.
+6. **Visualization:**  Present the results across the report's regional, sales, profitability, and DAX analysis pages.
+7. **Output:** An interactive Power BI report saved as a .pbix file, accompanied by documentation and selected screenshots.
 
 ---
 
 ## 6. Data Model & Schema
 
 
-### Dataset / Table: `Plant_FACT`
+### Dataset / Table: `Sales Data, Customer Data, Product Data`
 
-| Field / Attribute | Purpose |
-|-------------------|---------|
-| Sales information | Used to calculate sales performance |
-| Quantity | Used to evaluate sales volume |
-| Gross Profit | Used to evaluate profitability |
-| Date | Used for time-based analysis |
-| Account | Used to analyse performance across accounts |
-| Product information | Used to analyse performance by product type |
-| Country | Used for geographic analysis |
+| Table | Role in report |
+|---------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+|Sales Data     |Contains sales-related records and fields used for sales, profit, order, and year-based analysis.|
+|Customer Data  |Contains customer-related attributes, including region, city, state, country, postal code, and customer information used by report visuals.|
+|Product Data   |Contains product attributes, including product names used in the report.|
+
 
 > ### Accounts
 
@@ -180,8 +177,13 @@ The `Accounts` table contains account-level information used to analyse sales pe
 The `Plant_Hierarchy` table contains product hierarchy information used to categorise and analyse products.
 
 ### Relationships
+![Power BI Data Model](visuals/screenshots/Data_model.png)
 
-The tables are connected within the Power BI data model so that sales measures from the `Plant_FACT` table can be analysed using account and product attributes.
+The model connects sales records to customer and product information through the following fields:
+Customer Data[Customer ID] → Sales Data[Customer ID]
+Product Data[Product_ID] → Sales Data[Product ID]
+
+These relationships allow fields from the related tables to be used alongside sales measures in report visuals. Confirm the exact cardinality and filter direction in Power BI's Model view before documenting those settings.
 
 
 ## 7. Analysis & Metrics
