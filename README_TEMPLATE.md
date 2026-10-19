@@ -130,17 +130,20 @@ Sales in Rupees
 ---
 
 ## 5. Data Workflow
-Plant_DTS
-      ↓
-PowerBI- Power Query
-      ↓
-Data cleaning & Transformation
-      ↓
-Data modeling and relationships
-      ↓
-Dax Measures
-      ↓
-Interactive Dashboards
+```
+[Source CSV Files]
+            ↓
+[Data Import into Power BI]
+            ↓
+[Data Model & Relationships]
+            ↓
+[DAX Measures &Calculated Columns]
+            ↓
+[Charts, Tables & Other Visual
+            ↓
+[Interactive Power BI Report
+```
+
 ```
 
 1. **Source:** The project uses the Plant_DTS.xls dataset as the source of the sales and related business data.
