@@ -24,13 +24,12 @@
 5. [Data Workflow](#5-data-workflow)
 6. [Data Model & Schema](#6-data-model--schema)
 7. [Analysis--DAX-measures](#7-Analysis--DAX-Measures) 
-8. [Analysis & Metrics](#8-analysis--metrics)
-9. [Key Observations](#9-key-insights)
-10. [Recommendations](#10-recommendations)
-11. [Attribution](#11-assumptions--limitations)
-12. [Future Enhancements](#12-future-enhancements)
-13. [Deliverables](#13-deliverables)
-14. [Author](#14-author)
+8. [Key Obervations](#8-key--insights)
+9. [Recommendations](#10-recommendations)
+10. [Attribution](#11-assumptions--limitations)
+11. [Future Enhancements](#12-future-enhancements)
+12. [Deliverables](#13-deliverables)
+13. [Author](#14-author)
 
 ---
 
@@ -48,13 +47,15 @@ The report covers sales performance across the years 2019–2022 in the Regional
 This project was completed as a learning exercise to practise Power BI report development, data modelling, DAX, and data visualisation.
 -->
 
-**Context:** [The business, research, or personal situation that motivated this project.]
+**Context:** Sales performance reporting can help organisations examine which product categories contribute to sales, how profitability changes over time, and how performance differs between regions and customer groups.
 
-**Problem Statement:** [The specific question or challenge you were addressing.]
+**Problem Statement:** The project explores how Power BI can bring sales, customer, and product information together to support interactive business-performance analysis.
 
-**Approach:** [In 1–2 sentences - how did you tackle it?]
+**Approach:** The report combines sales data with customer and product tables, uses Power BI relationships and DAX calculations, and presents the results through charts, tables, cards, and interactive report pages.
 
-**Outcome:** [What did you produce or discover?]
+**Outcome:** The main deliverable is an interactive Power BI report containing a Regional Analysis page and additional pages demonstrating DAX calculations, comparisons, and different visualisation techniques.
+The Regional Analysis page examines sales and profit across 2019–2022, product-category performance, and customer age-group distribution. The report also contains separate pages exploring profit by subcategory and region, distinct orders, and marketing-category classifications.
+This is a learning project completed to practise Power BI report development, data modelling, DAX, and data visualisation. It is not presented as commissioned business analysis.
 
 ---
 
@@ -140,7 +141,7 @@ Interactive Power BI Report
 ```
 
 ```
-
+Workflow stages
 1. **Source:**  The project uses the postgres SQL addin, productdata.xml, customerdata file, 2023sales and salestill2022 dataset as the source of the sales and related business data.
 2. **Ingestion:** Import the relevant files into Power BI.
 3. **Preperation:** Inspect and prepare the imported data using the steps actually applied in Power Query.
@@ -201,7 +202,8 @@ The analysis uses comparative sales-performance analysis to evaluate current-per
 
 ---
 
-## 8. Key Insights
+## 8. Key Obervations
+
 **Insight 1: [Customer Age Distribution]**  
 The documented customer distribution is:
 | Age category  |  Count  |     Percentage |
