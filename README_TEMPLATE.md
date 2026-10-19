@@ -380,13 +380,6 @@ The Regional Analysis page compares sales and profit by year and product categor
 Exact values and percentage changes have not been recorded here, so no numerical growth claim is made. The trend should be checked against the underlying data and visual filters before reporting specific amounts or growth rates.
 
 
-
-
-
-
-
-
-
 ---
 
 ## 10. Recommendations
