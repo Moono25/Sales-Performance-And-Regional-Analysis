@@ -130,323 +130,160 @@ Sales in Rupees
 ---
 
 ## 5. Data Workflow
-```
-[Source CSV Files]
-            ↓
-[Data Import into Power BI]
-            ↓
-[Data Model & Relationships]
-            ↓
-[DAX Measures &Calculated Columns]
-            ↓
-[Charts, Tables & Other Visual
-            ↓
-[Interactive Power BI Report]
+Plant_DTS
+      ↓
+PowerBI- Power Query
+      ↓
+Data cleaning & Transformation
+      ↓
+Data modeling and relationships
+      ↓
+Dax Measures
+      ↓
+Interactive Dashboards
 ```
 
-1. **Source:** The project uses the postgres SQL addin, productdata.xml, customerdata file, 2023sales and salestill2022 dataset as the source of the sales and related business data.
-2. **Ingestion:** Import the relevant files into Power BI.
-3. **Preparation:** Inspect and prepare the imported data using the steps actually applied in Power Query.
-4. **Modelling:** Establish relationships between sales records and the related customer and product information.
-5. **Analysis:** Create DAX calculations and use them in report visuals.
-6. **Visualisation:** Present the results across the report's regional, sales, profitability, and DAX analysis pages.
-7. **Output:** An interactive Power BI report saved as a .pbix file, accompanied by documentation and selected screenshots.
-Source: Sales, customer, and product information supplied through the project files.
+1. **Source:** The project uses the Plant_DTS.xls dataset as the source of the sales and related business data.
+2. **Ingestion:** The source workbook was imported into Power BI for preparation and analysis.
+3. **Cleaning:** The source data was reviewed and prepared using Power Query to ensure that the tables and fields were suitable for analysis.
+4. **Data Modeling:** Relationships were established between the relevant tables within the Power BI data model.
+5. **Transformation:** Data was transformed into a structure suitable for the dashboard and analytical calculations by removing empty columns and making sure formats were consistent.
+6. **Analysis:** DAX measures were created to calculate sales-performance metrics including YTD, PYTD, YTD vs PYTD, quantity, gross profit and gross profit percentage.
+7. **Output:** The prepared data and measures were presented through an interactive Power BI sales performance dashboard.
 
 ---
 
 ## 6. Data Model & Schema
 
-The report uses three main tables:
 
-|Table          | Role in the report|
-|---------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-|Sales Data     |Contains sales-related records and fields used for sales, profit, order, and year-based analysis.|
-|Customer Data  |Contains customer-related attributes, including region, city, state, country, postal code, and customer information used by report visuals.|
-|Product Data   |Contains product attributes, including product names used in the report.|
+### Dataset / Table: `Plant_FACT`
+
+| Field / Attribute | Purpose |
+|-------------------|---------|
+| Sales information | Used to calculate sales performance |
+| Quantity | Used to evaluate sales volume |
+| Gross Profit | Used to evaluate profitability |
+| Date | Used for time-based analysis |
+| Account | Used to analyse performance across accounts |
+| Product information | Used to analyse performance by product type |
+| Country | Used for geographic analysis |
+
+> ### Accounts
+
+The `Accounts` table contains account-level information used to analyse sales performance across different accounts.
+
+### Plant_Hierarchy
+
+The `Plant_Hierarchy` table contains product hierarchy information used to categorise and analyse products.
+
+### Relationships
+
+The tables are connected within the Power BI data model so that sales measures from the `Plant_FACT` table can be analysed using account and product attributes.
 
 
-Relationships
-The model connects sales records to customer and product information through the following fields:
-Customer Data[Customer ID] → Sales Data[Customer ID]
-Product Data[Product_ID] → Sales Data[Product ID]
-
-These relationships allow fields from the related tables to be used alongside sales measures in report visuals. Confirm the exact cardinality and filter direction in Power BI's Model view before documenting those settings.
-
----
-
-## 7. ERD - Entity Relationship Diagram
-### The report uses DAX measures and calculated columns to support sales, profit, order, customer, and regional analysis.
-
-Key DAX calculations
-
-Total Sales
-
-Total Sales = SUM('Sales Data'[Sales])
-
-Calculates the sum of the sales values in the current filter context.
-
-Total Profit
-
-TotalProfit = SUM('Sales Data'[Profit])
-
-Calculates the sum of profit values in the current filter context.
-
-West Sales
-West Sales =
-CALCULATE(
-    [Total Sales],
-    'Customer Data'[Region] = "West"
-    )
-
-Calculates sales for the West region, subject to the measure's filter behaviour and the model relationships.
-
-Distinct Orders
-
-Distinct orders =
-DISTINCTCOUNT('Sales Data'[Order Number])
-
-Counts distinct order numbers in the current filter context.
-
-Target Profit
-Target profit = 100000
-
-Defines a fixed target value of 100,000. Its intended currency and business rationale have not been confirmed, so it should be treated as a demonstration target rather than a validated organisational target.
-
-Calculated columns
-
-Address
-
-Address =
-'Customer Data'[City] & ", " & 'Customer Data'[State]
-
-Combines the city and state into one text field.
-
-Full Address
-Full Address =
-CONCATENATE(
-    'Customer Data'[Address],
-    'Customer Data'[Postal Code]
-)
-
-Combines the address and postal-code fields. The formatting should be checked if this field is used for display.
-
-Full Address 2
-Full address 2 =
-CONCATENATE(
-    'Customer Data'[City],
-    ', ' & 'Customer Data'[Country] & ' ' &
-    'Customer Data'[Postal Code]
-)
-
-Combines selected location fields into a display string.
-
-Marketing Category
-Marketing Category =
-IF(
-    'Customer Data'[State] = "California"
-    || 'Customer Data'[State] = "New york"
-    || 'Customer Data'[State] = "Texas",
-    "Top",
-    "Other"
-)
-
-Classifies records from the specified states as Top and all other records as Other. This is a rule-based classification used in the report; it is not evidence that marketing performance has been measured or validated. The state labels and capitalisation should also be checked against the source data.
-
-Product Name
-Product name =
-RELATED('Product Data'[Product_Name])
-
-Retrieves the related product name through the model relationship, where that relationship supports the calculation.
-
-Sales in Rupees
-SalesinRupees =
-'Sales Data'[Sales] * 80
-
-Multiplies sales by a fixed factor of 80. Unless the conversion factor, currency, and applicable date are verified, this should be treated as a demonstration calculation—not a current or validated currency conversion.
-
-Conditional Formatting Colour
-color =
-SWITCH(
-    TRUE(),
-    'Sales Data'[Sales2021] > 600000, "#00FF00",
-    'Sales Data'[Sales2021] > 500000, "#FFFF00",
-    "#FF0000"
-)
-
-Assigns a colour code based on the Sales2021 value. Values above 600,000 are assigned green, values above 500,000 up to 600,000 are assigned yellow, and the remaining values are assigned red.
-
-Report analysis areas
-Analysis area
-
-What it examines
-
-Regional Analysis
-
-Sales by product category, customer age-group distribution, and sales/profit comparisons across 2019–2022.
-
-Profitability
-
-Profit by product subcategory and profit margin by region.
-
-Sales by category
-
-Sales comparisons across product categories.
-
-Regional and category comparisons
-
-Sales across regions and categories.
-
-Order analysis
-
-Distinct orders by region or other report filters.
-
-Marketing Category
-
-Sales grouped by the rule-based Top and Other classification.
-
-Visualisation practice
-
-Different chart types, tables, cards, and other Power BI visual features across the report pages.
----
-
-## 8. Analysis & Metrics
-
-<!--
-  Explain what you measured and how - before you share what you found.
-
-  WHAT GOOD LOOKS LIKE:
-  Metric: "Customer Return Rate"
-  Definition: "Number of transactions flagged as returns divided by total
-               transactions, calculated at product-category and regional grain."
-  Why It Matters: "Return rate - not sales volume - was hypothesised to
-                  explain regional revenue gaps. This metric tests that hypothesis."
-
-  WHAT TO AVOID:
-  ❌ Defining a metric only in code: SUM(returns) / COUNT(transaction_id)
-     That's an implementation. Write the plain-language definition here.
-     Both belong in your project - the definition in the README,
-     the implementation in the code.
--->
+## 7. Analysis & Metrics
 
 ### Analytical Approach
 
-[Describe how you approached the analysis. Were you exploring patterns? Testing a hypothesis? Building and validating a pipeline? Be honest about your method - exploratory work is valid, just call it that.]
+The analysis uses comparative sales-performance analysis to evaluate current-period performance against the previous period. The dashboard combines time-based analysis with breakdowns by country, product type and account to identify changes in sales volume and profitability.
 
 ### Key Metrics Defined
 
 | Metric | Plain-Language Definition | Why It Matters |
 |--------|--------------------------|----------------|
-| `[Metric 1]` | [What it measures, in one sentence] | [What decision or question it answers] |
-| `[Metric 2]` | [What it measures, in one sentence] | [What decision or question it answers] |
-| **Sales in Rupees** | [What it measures, in one sentence] | [What decision or question it answers] |
+| **Sales** | Total sales value generated during the selected period. | Measures overall revenue performance. |
+| **Quantity** | Total quantity of products sold during the selected period. | Measures sales volume independently of sales value. |
+| **Gross Profit** | Profit generated after accounting for the relevant cost of sales. | Measures the profitability generated from sales. |
+| **Gross Profit %** | Gross profit expressed as a percentage of sales. | Shows profitability relative to sales value. |
+| **YTD** | Sales or performance accumulated from the beginning of the selected year to the selected date. | Shows current-year performance to date. |
+| **PYTD** | The equivalent year-to-date period from the previous year. | Provides a comparable baseline for current performance. |
+| **YTD vs PYTD** | Comparison between current YTD performance and the corresponding previous-year period. | Identifies whether performance has improved or declined. |
 
 ### Methods Used
 
-- Regional Analysis  Sales by product category,    customer age-group distribution, and sales/profit comparisons across 2019–2022.
-- Profitability Profit by product       subcategory and profit margin by region.
-- Sales by category        Sales comparisons across product categories.
-- Regional and category    comparisons Sales across regions and categories.
-- Order analysis Distinct  orders by region or other report filters.
-- Marketing Category Sales grouped by the rule-based Top and Other classification.
--  Visualisation practice  Different chart types, tables, cards, and other Power BI visual features across the report pages.
+- Year-to-date and previous-year-to-date comparison
+- Time-based trend analysis
+- Geographic performance analysis
+- Product-type performance analysis
+- Account-level performance analysis
+- Comparative analysis of sales, quantity and profitability
 
 ---
 
-## 9. Key Insights
+## 8. Key Insights
+**Insight 1: [Sales performance changed across the comparison period]**  
+The dashboard allows current-period sales performance to be compared with the corresponding previous period, highlighting changes in overall sales performance.
 
-**Insight 1: [Product-category performance in the West region]**
-Furniture has the highest sales among the three categories.
-Technology ranks second.
-Office Supplies has the lowest sales of the three categories.
+**Insight 2: [Sales volume and profitability do not necessarily move together]**  
+Comparing quantity, sales and gross profit provides a broader view of performance than relying on sales value alone.
 
-**Insight 2: [Customer Age Distribution]**
-The documented customer distribution is:
+**Insight 3: [Performance varies across business dimensions]**  
+The dashboard shows differences in performance across countries, product types and accounts, allowing areas of stronger and weaker performance to be identified.
 
-Age category    Count     Percentage
+**Insight 4: [Profitability requires separate monitoring]** 
 
-Middle aged      105      41.18%
-Senior           94       36.86%
-Young            56       21.96%
-Total            255      100%
-
-Middle-aged customers represent the largest group in the documented view, while young customers represent the smallest.
-
-These figures describe the selected dashboard view and should not be generalised to all regions unless the filter context is removed or the broader results are verified.
-
-
-**Insight 3: [Sales and profit over time]**
-The Regional Analysis page compares sales and profit by year and product category for 2019–2022. The reviewed chart suggests that profit increases substantially over the displayed period.
-Exact values and percentage changes have not been recorded here, so no numerical growth claim is made. The trend should be checked against the underlying data and visual filters before reporting specific amounts or growth rates.
-
+Gross profit and gross profit percentage provide additional context when evaluating sales performance and help distinguish revenue growth from changes in profitability.
 
 ---
 
-## 10. Recommendations
-
-
+## 9. Recommendations
+---
 
 | Priority | Recommendation | Based On | Suggested Owner |
 |----------|---------------|----------|-----------------|
-| High |  Compare sales and profit across regions to identify where additional analysis may be useful. |Use the yearly comparisons to identify changes that warrant further investigation. | Regional Sales Directors & Business Intelligence Team |
-| High |Examine sales alongside profit to understand whether high sales correspond to stronger profitability.| [Insight it comes from] | Chief Financial Officer & Commercial Strategy Lead|
-| Medium |Examine whether customer distributions vary across regions or segments. | [Insight it comes from] | Marketing Analytics Manager & CRM Administrator |
-| Medium | Examine sales alongside profit to understand whether high sales correspond to stronger profitability. | [Insight it comes from] | Financial Planning & Analysis |
-| Medium |Review the marketing-category classification, fixed target values, and colour thresholds before using them for actual business decisions. | [Insight it comes from] | Marketing Operations Director & Data governance Lead |
+| High | Investigate countries and accounts showing sustained weaker sales or profitability performance to identify the factors contributing to the decline. | Geographic and account-level performance analysis | Sales / Management |
+| High | Monitor gross profit percentage alongside sales when evaluating performance so that increases in sales volume are considered alongside profitability. | Sales and profitability comparison | Management / Finance |
+| Medium | Review product-type performance to identify categories contributing most strongly to sales and profitability and those requiring attention. | Product-type analysis | Sales / Product Management |
 
 ---
 
-## 11. Assumptions & Limitations
+## 10. Assumptions & Limitations
 ### Assumptions
-- The marketing-category classification is based on specified state names and should not be interpreted as an independently validated marketing segmentation.
-- The precise overall dataset date coverage should be confirmed from the source files.
-- The documented Regional Analysis page compares 2019–2022.
+
+- The source data was assumed to be representative of the sales activity covered by the dataset.
+- The YTD and PYTD calculations are treated as appropriate comparable periods for evaluating performance.
+- The definitions of sales, quantity, gross profit and gross profit percentage are based on the definitions provided within the source project/data model.
 
 ### Limitations
--The fixed sales multiplier and target-profit value require additional context before they can be interpreted as business measures.
-- The report identifies patterns and comparisons but does not establish causal explanations.
-- The analysis is limited to the fields available in the supplied datasets.
-- Exact numerical findings beyond the supplied Regional Analysis notes have not been independently verified.
-- This project demonstrates learning and practical application of Power BI concepts; it is not an independently commissioned client engagement.
 
+- The analysis is based on the available Plant.Co dataset and therefore reflects only the information contained in that dataset.
+- The dashboard identifies patterns and differences in performance but does not establish the underlying causes of those changes.
+- Customer-level purchasing behaviour was outside the scope of the analysis.
+- Product size information was excluded from the analysis.
+- The project is a follow-along implementation based on an existing Plant.Co dashboard/case study rather than an independent analysis conducted for Plant.Co.
+---
+
+## 11. Future Enhancements
+---
+
+- [ ] Add more detailed customer-level analysis if suitable customer data becomes available.
+- [ ] Expand the dashboard with additional profitability and product-performance analysis.
+- [ ] Introduce automated data refresh if the project were connected to a recurring operational data source.
+- [ ] Add more detailed drill-through analysis for underperforming countries, products and accounts.
 
 ---
 
-## 12. Future Enhancements
-
-- [ ] Reviewing and documenting the data model and relationship settings.
-- [ ] Validating the data types, key uniqueness, and consistency of the source tables.
-- [ ] Documenting the final dataset date range and data grain.
-- [ ] Adding a dedicated sales and profitability overview page, if needed.
-- [ ] Documenting key measures with their business definitions and intended use.
-- [ ] Validating target values, conditional-formatting thresholds, and currency assumptions.
-- [ ] Adding verified numerical findings and percentage changes.
-- [ ] Including screenshots of the most informative report pages.
-
-
----
-
-## 13. Deliverables
+## 12. Deliverables
 
 | Deliverable | Description | Location |
 |-------------|-------------|----------|
-| Power BI report | [ Interactive sales and regional analysis report.] | [`/PowerBI/sales and regional analysis report.`] |
-| Source data | [CSV files used by the report, subject to redistribution permissions.] | [`/raw/external/2023sale.csv,....`] | | [`/processed/sales and regional analysis report.pbix`] | | [`/external/..../customer data/`] |
-| Dashboard screenshots |Static previews of selected report pages | [`/visuals/Sales Performance  Regional Analysis`] |
-| README |Documentation of the project scope, data model, DAX calculations, report features, observations, and limitations. | main |
+| [Power BI dashboard] | [Interactive Plant.Co performance report dashboard containing the analysis and visualizations.]| [powerbi/PlantCo_Sales_Performance.pbix] |
+| [Source dataset]  | [Original Plant.Co dataset used as the source for the analysis.] |  [`/data/Plant_DTS.xls`] |
+| [Data dictionary] | [Documentation describing the relevant dataset fields and structure.] | [`/docs/data_dictionary.md`] |
+| [Project Documentation] | [README documenting the project, workflow, analysis and findings.] | [`/README.md`] |
 
 ---
 
-## 14. Author
+## 13. Author
 
 **[Mapenzi Moono]**
 [Data support/Intern - Data Analyst/ Research Associate/ M&E Assistant]
 
-- 🔗 [https://www.linkedin.com/in/mapenzi-moono-445aaa26a/
+- 🔗 [https://www.linkedin.com/in/mapenzi-moono-445aaa26a/]
 - 💼 [Portfolio or GitHub profile URL]
-- 📧  [mapenzimoono345@gmail.com]
+- 📧 [mapenzimoono345@gmail.com]
 
 ---
 
-*Last updated: [Month YYYY]*
+*Last updated: 10/2026*
 *If this template helped you, consider starring the repository.*
