@@ -1,10 +1,9 @@
-# [Project Title]
-> *One sentence. What did you analyze, build, or solve - and why does it matter?*
+# [Sales Performance & Regional Analysis Dashboard]
+> A Power BI learning project analysing sales, profitability, product categories, customer demographics, and regional performance through interactive visualisations and DAX calculations.
 
 ---
 
 ## ⚙️ Project Type Flags
-> *Check what applies. This helps reviewers and collaborators understand the nature of the work at a glance. Delete this block before publishing.*
 
 - [ ] Exploratory Data Analysis (EDA)
 - [ ] SQL Analysis / Querying
@@ -79,14 +78,9 @@ This project was completed as a learning exercise to practise Power BI report de
 | **Out of Scope** | Forecasting, causal analysis, validated marketing effectiveness, and recommendations based on independently verified company operations |
 | **Time Period** | The Regional Analysis page displays 2019–2022. The full source-data date range has not been independently confirmed. |
 | **Granularity** | The report uses sales records and associated customer and product information. Exact row-level grain and row counts should be confirmed from the source files. |
-|**Report format**| Interactive Power BI report with multiple pages and visual types |
-Sales in Rupees
-### Tools & Technologies
+|**Report format**| Interactive Power BI report with multiple pages and visual types | Sales in Rupees
 
-<!--
-  List only what you actually used on this project.
-  This is not your skills section - it's the project's technical context.
--->
+### Tools & Technologies
 
 | Category | Tool(s) Used |
 |----------|-------------|
@@ -245,27 +239,30 @@ Furniture has the highest sales among the three categories. Technology ranks sec
 
 ## 10. Assumptions & Limitations
 ### Assumptions
+- The marketing-category classification is based on specified state names and should not be interpreted as an independently validated marketing segmentation.
+- The precise overall dataset date coverage should be confirmed from the source files.
+- The documented Regional Analysis page compares 2019–2022.
 
-- The source data was assumed to be representative of the sales activity covered by the dataset.
-- The YTD and PYTD calculations are treated as appropriate comparable periods for evaluating performance.
-- The definitions of sales, quantity, gross profit and gross profit percentage are based on the definitions provided within the source project/data model.
 
 ### Limitations
+- The fixed sales multiplier and target-profit value require additional context before they can be interpreted as business measures.
+- The report identifies patterns and comparisons but does not establish causal explanations.
+- The analysis is limited to the fields available in the supplied datasets.
+- Exact numerical findings beyond the supplied Regional Analysis notes have not been independently verified.
+- This project demonstrates learning and practical application of Power BI concepts; it is not an independently commissioned client engagement.
 
-- The analysis is based on the available Plant.Co dataset and therefore reflects only the information contained in that dataset.
-- The dashboard identifies patterns and differences in performance but does not establish the underlying causes of those changes.
-- Customer-level purchasing behaviour was outside the scope of the analysis.
-- Product size information was excluded from the analysis.
-- The project is a follow-along implementation based on an existing Plant.Co dashboard/case study rather than an independent analysis conducted for Plant.Co.
 ---
 
 ## 11. Future Enhancements
 ---
+- [ ] Validating the data types, key uniqueness, and consistency of the source tables.
+- [ ] Documenting the final dataset date range and data grain.
+- [ ] Adding a dedicated sales and profitability overview page, if needed.
+- [ ] Documenting key measures with their business definitions and intended use.
+- [ ] Validating target values, conditional-formatting thresholds, and currency assumptions.
+- [ ] Adding verified numerical findings and percentage changes.
+- [ ] Including screenshots of the most informative report pages.
 
-- [ ] Add more detailed customer-level analysis if suitable customer data becomes available.
-- [ ] Expand the dashboard with additional profitability and product-performance analysis.
-- [ ] Introduce automated data refresh if the project were connected to a recurring operational data source.
-- [ ] Add more detailed drill-through analysis for underperforming countries, products and accounts.
 
 ---
 
@@ -273,10 +270,11 @@ Furniture has the highest sales among the three categories. Technology ranks sec
 
 | Deliverable | Description | Location |
 |-------------|-------------|----------|
-| [Power BI dashboard] | [Interactive Plant.Co performance report dashboard containing the analysis and visualizations.]| [powerbi/PlantCo_Sales_Performance.pbix] |
-| [Source dataset]  | [Original Plant.Co dataset used as the source for the analysis.] |  [`/data/Plant_DTS.xls`] |
-| [Data dictionary] | [Documentation describing the relevant dataset fields and structure.] | [`/docs/data_dictionary.md`] |
-| [Project Documentation] | [README documenting the project, workflow, analysis and findings.] | [`/README.md`] |
+| Power BI report | [ Interactive sales and regional analysis report.] | [`/PowerBI/sales and regional analysis report.`] |
+| Source data | [CSV files used by the report, subject to redistribution permissions.] | [`/raw/external/2023sale.csv,....`] [`/processed/sales and regional analysis report.pbix`]  [`/external/..../customer data/`] |
+| Dashboard screenshots |Static previews of selected report pages | [`/visuals/Sales Performance  Regional Analysis`] |
+| README |Documentation of the project scope, data model, DAX calculations, report features, observations, and limitations. | main |
+
 
 ---
 
