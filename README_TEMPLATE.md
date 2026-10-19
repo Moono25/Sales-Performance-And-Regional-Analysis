@@ -121,10 +121,11 @@ This project was completed as a learning exercise to practise Power BI report de
 ├── visuals/
 │   └── screenshots/
 └── README.md
----
+
+````````
 
 ## 5. Data Workflow
-```
+``````
 Source CSV Files
             ↓
 Data Import into Power BI
@@ -148,7 +149,7 @@ Interactive Power BI Report
 6. **Visualization:**  Present the results across the report's regional, sales, profitability, and DAX analysis pages.
 7. **Output:** An interactive Power BI report saved as a .pbix file, accompanied by documentation and selected screenshots.
 
----
+```````
 
 ## 6. Data Model & Schema
 
